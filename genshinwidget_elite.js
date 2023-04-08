@@ -1,6 +1,6 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
-// icon-color: deep-gray; icon-glyph: moon;
+// icon-color: deep-gray; icon-glyph: star-and-crescent;
 
 // ========= ↓将生成的配置粘贴这以下↓=========
 
@@ -65,16 +65,6 @@ if (!resin) {
     resin = JSON.parse(file.readString(responseSavePath))
 }
 
-// 背景图片定义
-const darkbackground = await loaddarkbackground()
-const darksmallbackground = await loaddarksmallbackground()
-const darkuidbackground = await loaddarkuidbackground()
-const darkavatarbackground = await loaddarkavatarbackground()
-const lightbackground = await loadlightbackground()
-const lightsmallbackground = await loadlightsmallbackground()
-const lightuidbackground = await loadlightuidbackground()
-const lightavatarbackground = await loadlightavatarbackground()
-
 // 各类图标定义
 const resinIcon = await loadResinIcon()
 const coinIcon = await loadCoinIcon()
@@ -83,16 +73,6 @@ const taskIcon = await loadTaskIcon()
 const avatarIcon = await loadAvatarIcon()
 const transformerIcon = await loadTransformerIcon()
 const paimonIcon = await loadPaiMonIcon()
-
-// 指示符号
-const darknoneIcon = await loaddarkNoneIcon()
-const darkingIcon = await loaddarkIngIcon()
-const darkyesIcon = await loaddarkYesIcon()
-const lightnoneIcon = await loadlightNoneIcon()
-const lightingIcon = await loadlightIngIcon()
-const lightyesIcon = await loadlightYesIcon()
-const lightdlineIcon = await loadlightdLineIcon()
-const darkdlineIcon = await loaddarkdLineIcon()
 
 // 定义画布
 const canvas = new DrawContext()
@@ -127,23 +107,23 @@ const ThemeColor = Device.isUsingDarkAppearance() ? {
 }
 
 const ThemeImage = Device.isUsingDarkAppearance() ? {
-    uidbgImage: darkuidbackground,
-    bgmediumImage: darkbackground,
-    bglargeImage: darkavatarbackground,
-    bgsmallImage: darksmallbackground,
-    noneIcon: darknoneIcon,
-    yesIcon: darkyesIcon,
-    ingIcon: darkingIcon,
-    dlineIcon: darkdlineIcon,
+    uidbgImage: await loaddarkuidbackground(),
+    bgmediumImage: await loaddarkbackground(),
+    bglargeImage: await loaddarkavatarbackground(),
+    bgsmallImage: await loaddarksmallbackground(),
+    noneIcon: await loaddarkNoneIcon(),
+    yesIcon: await loaddarkYesIcon(),
+    ingIcon: await loaddarkIngIcon(),
+    dlineIcon: await loaddarkdLineIcon(),
 } : {
-    uidbgImage: lightuidbackground,
-    bgmediumImage: lightbackground,
-    bglargeImage: lightavatarbackground,
-    bgsmallImage: lightsmallbackground,
-    noneIcon: lightnoneIcon,
-    yesIcon: lightyesIcon,
-    ingIcon: lightingIcon,
-    dlineIcon: lightdlineIcon,
+    uidbgImage: await loadlightuidbackground(),
+    bgmediumImage: await loadlightbackground(),
+    bglargeImage: await loadlightavatarbackground(),
+    bgsmallImage: await loadlightsmallbackground(),
+    noneIcon: await loadlightNoneIcon(),
+    yesIcon: await loadlightYesIcon(),
+    ingIcon: await loadlightIngIcon(),
+    dlineIcon: await loadlightdLineIcon(),
 }
 
 let widget = await createWidget()
